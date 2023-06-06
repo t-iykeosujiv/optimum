@@ -359,6 +359,8 @@ class ORTDecoder(ORTModelPart):
             if "loss" in self.output_names:
                 loss = output_buffers["loss"].view(output_shapes["loss"])
         else:
+            # TODO: Temporary fix. A method to automatically create attention_mask if not given should be added  
+            attention_mask = torch.ones(input_ids.shape, dtype=torch.int64, device='cpu') if attention_mask is None else attention_mask
             if use_torch:
                 onnx_inputs = {
                     "input_ids": input_ids.cpu().detach().numpy(),
