@@ -227,6 +227,7 @@ class ORTModelDecoder(ORTModel):
         self.decoder = ORTDecoder(decoder_session, self)
         self.decoder_model_path = Path(decoder_session._model_path)
         self.decoder_model_name = self.decoder_model_path.name
+        self.preprocessors = preprocessors
 
         self.decoder_with_past = None
         self.decoder_with_past_model_path = None
