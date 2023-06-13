@@ -321,6 +321,7 @@ class ORTDecoder(ORTModelPart):
             model_inputs = [input_ids]
 
             if "attention_mask" in self.input_names:
+                attention_mask = torch.ones(input_ids.shape, dtype=torch.int64, device='cpu') if attention_mask is None else attention_mask
                 model_inputs.append(attention_mask)
 
             if past_key_values is not None:
